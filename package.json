@@ -1,0 +1,34 @@
+{
+  "name": "bds-maneger-gui",
+  "version": "0.0.3",
+  "description": "Um gerenciador grafico baseado em node.js",
+  "main": "node-assents/main.js",
+  "devDependencies": {
+    "electron": "^11.0.0-beta.9",
+    "electron-builder": "^22.8.1"
+  },
+  "dependencies": {
+    "electron-is": "^3.0.0"
+  },
+  "scripts": {
+    "start": "node_modules/.bin/electron . --no-sandbox",
+    "build-deb": "node_modules/.bin/electron-builder --x64 --arm64 --linux deb", 
+    "int": "npm install"
+  },
+  "build":{
+    "linux": {
+      "icon": "build/icons/mcpe.png",
+      "category": "Sirherobrine23"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sirherobrine23/bds-maneger.git"
+  },
+  "author": "Matheus Sampaio Queirog (Sirherobrine23) <srherobrine20@gmail.com>",
+  "license": "GPL3",
+  "bugs": {
+    "url": "https://github.com/Sirherobrine23/bds-maneger/issues"
+  },
+  "homepage": "https://github.com/Sirherobrine23/bds-maneger#readme"
+}

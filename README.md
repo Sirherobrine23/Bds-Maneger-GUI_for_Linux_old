@@ -1,2 +1,1 @@
-# Bds-Maneger-GUI
-Gui for bds-manager-cli powered by Electron JS and NodeJS
+# è apenas uma gui muito simples baseado em electron e nodejs para o bds-maneger

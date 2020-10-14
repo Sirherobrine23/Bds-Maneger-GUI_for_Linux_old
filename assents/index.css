@@ -1,0 +1,51 @@
+body{
+    transition-duration: 1.5s;
+    background-color: rgb(169, 169, 169);
+}
+.port-left {
+    float: left; 
+    margin-bottom: 50px;
+}
+.port-right {
+    float: right;
+}
+.port-center {
+    margin-left: 1.9%;
+}
+.port {
+    color: black;
+}
+textarea {
+    resize: none;
+    background-color: rgb(94, 94, 94);
+    border-radius: 4px;
+    transition: all 2s ease;
+    color: white
+}
+input, select{
+    border: none;
+    background-color: transparent;
+    color: rgb(6 6 6 / 82%);
+}
+.sizess{
+    height: 25px;
+    align-content: center;
+}
+.start_buttom, .stop_buttom, .restart_buttom{
+  text-align: center;
+}
+@media screen and (min-width: 1000px){
+  .port-left, .port-right, .port-center {
+    display: inline-block;
+    vertical-align: middle;
+    flex-flow: row wrap;
+    width: 50%;
+  }
+  body{
+    color: rgb(6 6 6 / 82%);
+  }
+  textarea {
+    background-color: white;
+    color: black
+  }
+}
