@@ -3,23 +3,117 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Minecraft Bedrock Server Manger</title>
+    <title>Minecraft Bedrock Server Maneger</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
+    <!-- <link rel='stylesheet' type='text/css' media='screen' href="https://old.sirherobrine23.org/css/bootstrap4.4.css"> -->
+    <link rel='stylesheet' type='text/css' media='screen' href="../assents/index.css">
 </head>
-<body>
+<!--Java Script-->
+<!-- Status -->
+<script src="../assents/status.js"></script>
 
-    <div class="main_root">
-        <a href="teste.html">Testes</a>
+<!-- Give Iten -->
+<script src="../assents/give.js"></script>
+
+<!-- Set Config -->
+<script src="../assents/config.js"></script>
+
+<!-- Geral -->
+<script>
+function getCommandOutputStatus() {return document.getElementById("bds-status-cli");};
+
+function getCommandOutputGive() { return document.getElementById("giveOUTPUT");  };
+
+function getCommandOutputConfig() { return document.getElementById("configOUTPUT");  };
+
+GETPERMISSION();
+ONLINEMODE();
+PORTSERVER();
+PORTSERVER6();
+MAXPLAYER();
+</script>
+
+<!--Java Script-->
+  <body>
+    <br>
+
+    <!-- config -->
+      <hr>
+    <div class="config">
+        <form class="start_buttom" method="POST" action="#" onsubmit="SET();return false">
+          
+          <label for="player">Total permited for user connect in world:</label>
+          <input type="number" value="10" id="player" />
+          
+          <br>
+      
+          <!--Mine Permission default for players-->
+          <label for="perm">Select Permission for all players:</label>
+          <select id="perm">
+            <option value="operator">Operator</option>
+            <option value="member">Member</option>
+            <option value="visitor">Visitor</option>
+          </select>
+      
+            <br>
+      
+          <!--Open map`s for players not authenticated in account in Minecraft-->
+          <label for="xbox">Online Mode Server:</label>
+          <select id="xbox">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+      
+          <br>
+      
+          <!--Not Implemeted whitelist in cli mode, wait time for add-->
+          <label for="whitelist">Whitelist</label>
+            <select>
+            <option hidden>Select one Option</option>
+            <option value="true">Sim</option>
+            <option value="false">Não</option>
+          </select>
+          
+            <br>      
+          
+          <!--Modify port v4 (IPv4) in server.proprieties-->
+          <label for="port4">Port (v4) Server for connect:</label>
+          <input id="port4" type="number" value="19132">
+      
+          <br>
+      
+          <!--Modify port v6 (IPv6) in server.proprieties-->
+          <label for="port6">Port (v6) Server for connect:</label>
+          <input id="port6" type="number" value="19133">
+          <input type="submit" />
+      
+        </form>
+    </div>
+      <hr>
+    <!-- Give Itens -->
+    <div class="give">
+        <form method="POST" action="#" onsubmit="GIVE();return false">
+          <label for="nick">Nickname ou Gametag:</label>
+          <input type="text" id="nick" />
+            <br>
+          <label for="item">Qual o Item</label>
+          <input type="texte" id="item">
+            <br>
+          <label for="pack">Quantidade de itens:</label>
+          <input type="number" id="pack" value="1" min="1" max="64">
+
+            <input type="submit" value="Give me the item" />
+        </form> 
+    </div>
+      <hr>
+    <div class="Saidas">
+      <a id='bds-status-cli'></a>
+        <br>
+      <a id='configOUTPUT'></a>
+        <br>
+      <a id='giveOUTPUT'></a>
     </div>
 
-    <a href="bds-status/index.html">Minecraft Server Status Load system</a>
-    <p>
-        <a href="bds-give/index.html">Give Itens</a>
-    </p>
-    <p>
-        <a href="bds-config/index.html">Set Config Server</a>
-    </p>
-</body>
+
+  </body>
 </html>

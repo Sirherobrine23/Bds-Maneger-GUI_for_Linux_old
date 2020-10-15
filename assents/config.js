@@ -1,11 +1,12 @@
-const { log } = require("console");
+
 var is = require("electron-is");
 
-function appendOutput(msg) { getCommandOutput().value += (msg); };
+function appendOutputConfig(msg) { getCommandOutputConfig().innerHTML += (msg); };
 
 // For all command's
 var sudo = 'sudo';
 var bds_config = 'bds-config';
+// var bds_config = 'echo';
 var set_config = 'set';
 var get_config = 'get';
 
@@ -93,16 +94,13 @@ function SET() {
 
     var child = process.spawn(sudo, [bds_config, set_config, play, perm, xbox, por4, por6]);
     // Mais Inportante
-    setInterval(function(){
-      textarea.scrollTop = textarea.scrollHeight;
-    }, 0);
     child.on('error', function(err) {
-      appendOutput('Tivemos Um Erro :> <'+err+'>' );
+      appendOutputConfig('Tivemos Um Erro :> <'+err+'>' );
     });
     child.stdout.on('data', function (data) {
-      appendOutput(data);
+      appendOutputConfig(data);
     });
     child.stderr.on('data', function (data) {
-      appendOutput('stderr: <'+data+'>' );
+      appendOutputConfig('Erro No: '+data+' '+code+'' );
     });
 };
