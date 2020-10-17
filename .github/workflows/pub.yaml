@@ -1,8 +1,6 @@
 name: Build and Publish
 on:
   push:
-    branches:
-      - Bds-Maneger-gui
     paths:
         - "package.json"
 
