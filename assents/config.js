@@ -1,7 +1,7 @@
 
 var is = require("electron-is");
 
-function appendOutputConfig(msg) { getCommandOutputConfig().innerHTML += (msg); };
+function appendOutputConfig(msg) { (msg); };
 
 // For all command's
 var sudo = 'sudo';
@@ -18,9 +18,9 @@ var pl = 'player';
 var pe= 'permission';
 var po = 'port';
 var po6 = 'portv6';
+var whi = 'whitelist';
 
 function MAXPLAYER() {
-  var max = 'player';
   const process = require('child_process');
   var child = process.spawn(sudo, [bds_config, get_config, pl]);
   child.stdout.on('data', function (data) {
@@ -29,6 +29,18 @@ function MAXPLAYER() {
     str = str.replace(/\r?\n|\r/g, "");
     document.getElementById('player').value = (str);
     return console.log("Total for players connect in world: "  + str);
+  });
+}
+
+function WHITEL() {
+  const process = require('child_process');
+  var child = process.spawn(sudo, [bds_config, get_config, whi]);
+  child.stdout.on('data', function (data) {
+    var str;
+    str = data.toString();
+    str = str.replace(/\r?\n|\r/g, "");
+    document.getElementById('player').value = (str);
+    return console.log("Whitelist: "  + str);
   });
 }
 
@@ -94,13 +106,7 @@ function SET() {
 
     var child = process.spawn(sudo, [bds_config, set_config, play, perm, xbox, por4, por6]);
     // Mais Inportante
-    child.on('error', function(err) {
-      appendOutputConfig('Tivemos Um Erro :> <'+err+'>' );
-    });
     child.stdout.on('data', function (data) {
-      appendOutputConfig(data);
-    });
-    child.stderr.on('data', function (data) {
-      appendOutputConfig('Erro No: '+data+' '+code+'' );
+      document.getElementById("configOUTPUT").value += (data);
     });
 };

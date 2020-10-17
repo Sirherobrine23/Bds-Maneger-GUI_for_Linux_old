@@ -1,6 +1,6 @@
 body{
     transition-duration: 1.5s;
-    background-color: rgb(169, 169, 169);
+    background-color: rgba(193, 193, 193, 0.379);
 }
 .port-left {
     float: left; 
@@ -14,4 +14,26 @@ body{
 }
 .port {
     color: black;
+}
+.config{
+    grid-area: config;
+}
+.give{
+    grid-area: give;
+}
+.Saidas{
+    grid-area: Saidas;
+}
+.root{
+    height: 10vh;
+}
+
+@media screen and (min-width: 1000px){
+    .root{
+        height: 70vh;
+        display: grid;
+        grid-template-columns: 0,5fr 2fr 1,5fr;
+        grid-template-rows: 1,5fr 0,5fr 1fr;
+        grid-template-areas: "give config Saidas";
+    }
 }

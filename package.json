@@ -1,6 +1,6 @@
 {
   "name": "bds-maneger-gui",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "Um gerenciador grafico baseado em node.js",
   "main": "node-assents/main.js",
   "devDependencies": {
