@@ -13,16 +13,11 @@ var get_config = 'get';
 // Set command in chil process
 var mais = '='
 
-var xb = 'xbox';
-var pl = 'player';
-var pe= 'permission';
-var po = 'port';
-var po6 = 'portv6';
-var whi = 'whitelist';
-
 function MAXPLAYER() {
-  const process = require('child_process');
-  var child = process.spawn(sudo, [bds_config, get_config, pl]);
+  var spawn = require('child_process').spawn;
+  var child = spawn('sudo bds-config get player', {
+    shell: true
+  });
   child.stdout.on('data', function (data) {
     var str;
     str = data.toString();
@@ -32,21 +27,11 @@ function MAXPLAYER() {
   });
 }
 
-function WHITEL() {
-  const process = require('child_process');
-  var child = process.spawn(sudo, [bds_config, get_config, whi]);
-  child.stdout.on('data', function (data) {
-    var str;
-    str = data.toString();
-    str = str.replace(/\r?\n|\r/g, "");
-    document.getElementById('player').value = (str);
-    return console.log("Whitelist: "  + str);
-  });
-}
-
 function GETPERMISSION() {
-  const process = require('child_process');
-  var child = process.spawn(sudo, [bds_config, get_config, pe]);
+  var spawn = require('child_process').spawn;
+  var child = spawn('sudo bds-config get permission', {
+    shell: true
+  });
   child.stdout.on('data', function (data) {
     var str;
     str = data.toString();
@@ -57,8 +42,10 @@ function GETPERMISSION() {
 }
 
 function ONLINEMODE() {
-  const process = require('child_process');
-  var child = process.spawn(sudo, [bds_config, get_config, xb]);
+  var spawn = require('child_process').spawn;
+  var child = spawn('sudo bds-config get xbox', {
+    shell: true
+  });
   child.stdout.on('data', function (data) {
     var str;
     str = data.toString();
@@ -69,8 +56,10 @@ function ONLINEMODE() {
 }
 
 function PORTSERVER() {
-  const process = require('child_process');
-  var child = process.spawn(sudo, [bds_config, get_config, po]);
+  var spawn = require('child_process').spawn;
+  var child = spawn('sudo bds-config get port', {
+    shell: true
+  });
   child.stdout.on('data', function (data) {
     var str;
     str = data.toString();
@@ -81,9 +70,11 @@ function PORTSERVER() {
 }
 
 function PORTSERVER6() {
-  const process = require('child_process');
-  var child = process.spawn(sudo, [bds_config, get_config, po6]);
-  child.stdout.on('data', function (data) {
+  var spawn = require('child_process').spawn;
+  var child = spawn('sudo bds-config get portv6', {
+    shell: true
+  });
+    child.stdout.on('data', function (data) {
     var str;
     str = data.toString();
     str = str.replace(/\r?\n|\r/g, "");
@@ -91,20 +82,42 @@ function PORTSERVER6() {
     return console.log("Server port V6: " + str);
   });
 }
+
+function whitelistConfig() {
+  var spawn = require('child_process').spawn;
+  var child = spawn('sudo bds-config get whitelist', {
+    shell: true
+  });
+  child.stdout.on('data', function (data) {
+    var str;
+    str = data.toString();
+    str = str.replace(/\r?\n|\r/g, "");    
+    document.getElementById('whitelist').value = (str);
+    return console.log("Whitelist: " + str);
+  });
+}
+
+GETPERMISSION();
+ONLINEMODE();
+PORTSERVER();
+PORTSERVER6();
+MAXPLAYER();
+whitelistConfig();
+
 // set Configs
 function SET() {
     const process = require('child_process');
     var textarea = document.getElementById('output');
-    var play = pl + mais + document.getElementById('player').value;
-    var perm = pe + mais + document.getElementById("perm").value;
-    var xbox = xb + mais + document.getElementById("xbox").value;
-
-    var por4 = po + mais + document.getElementById("port4").value;
-    var por6 = po6 + mais + document.getElementById("port6").value;
+    var play = 'player=' + document.getElementById('player').value;
+    var perm = 'permission=' + document.getElementById("perm").value;
+    var xbox = 'xbox=' + document.getElementById("xbox").value;
+    var whitelist = 'whitelist=' + document.getElementById("whitelist").value;
+    var por4 = 'port=' + document.getElementById("port4").value;
+    var por6 = 'portv6=' + document.getElementById("port6").value;
     
     // var whitelist = document.getElementById("whitelist").value;
 
-    var child = process.spawn(sudo, [bds_config, set_config, play, perm, xbox, por4, por6]);
+    var child = process.spawn('sudo', [bds_config, set_config, play, perm, xbox, por4, por6, whitelist]);
     // Mais Inportante
     child.stdout.on('data', function (data) {
       document.getElementById("configOUTPUT").value += (data);

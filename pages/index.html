@@ -5,6 +5,7 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Minecraft Bedrock Server Maneger</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="icon" type="image/png" href="../assents/mcpe.png"/>
     <!-- <link rel='stylesheet' type='text/css' media='screen' href="https://old.sirherobrine23.org/css/bootstrap4.4.css"> -->
     <link rel='stylesheet' type='text/css' media='screen' href="../assents/index.css">
 </head>
@@ -17,17 +18,6 @@
 
 <!-- Set Config -->
 <script src="../assents/config.js"></script>
-
-<!-- Geral -->
-<script>
-function getCommandOutputGive() { ;  };
-
-GETPERMISSION();
-ONLINEMODE();
-PORTSERVER();
-PORTSERVER6();
-MAXPLAYER();
-</script>
 <!--Java Script-->
   <body>
     <br>
@@ -63,12 +53,12 @@ MAXPLAYER();
           
               <br>
           
-              <!--Not Implemeted whitelist in cli mode, wait time for add-->
+              <!--Whitelist-->
               <label for="whitelist">Whitelist</label>
-                <select>
+                <select id="whitelist">
                 <option hidden>Select one Option</option>
-                <option value="true">Sim</option>
-                <option value="false">Não</option>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
               </select>
               
                 <br>      
@@ -110,40 +100,33 @@ MAXPLAYER();
       </div>
        
       <!-- Status -->
-      <script>
-        function getCommandOutputStatus() {
-          return document.getElementById("bds-status-cli");
-        };
-
-        function getCommandOutputStatusA() {
-          return document.getElementById("bds-status-cli-a");
-        };
-
-        function MEMOUtPUTa() {
-          return document.getElementById("MEMu");
-        };
-        function MEMOUtPUTb() {
-          return document.getElementById("MEMua");
-        };
-      </script>
-
       <div class="Saidas">
         <label for="Minecraft-Status">Minecraft Status:</label>
         <fieldset id="Minecraft-Status">
           <label for="refresh">Total to refresh:</label>
-          <input id="refresh" type="number" min="1" value="500">
-          <label for="refresh">ms</label>
-            <br>
-          <label for="bds-status-cli">CPU:</label>
-          <progress id="bds-status-cli" value="1" max="200"></progress>
-            <a id="bds-status-cli-a"></a>
-              <br>
-          <label for="MEMu">Memoria RAM:</label>
-          <progress id="MEMu" value="1" max="200"></progress>
-            <a id="MEMua"></a>
-          <br>
+            <input id="refresh" type="number" min="400" value="400">
+          <label for="refresh">ms, *Not Recommended down 400 ms</label>
+      <!-- ------------------------------------------------------------------------- -->
+          <p>
+            <label for="statusCPU">CPU:</label>
+              <progress id="statusCPU" value="1" max="200"></progress>
+                <a id="statusCPUa">0%</a>
+          </p>
+      <!-- ------------------------------------------------------------------------- -->
+          <p>
+            <label for="Memoriaramatual">Memoria RAM:</label>
+              <progress id="Memoriaramatual" value="1" max="100"></progress>
+                <a id="Memoriaramatuala">0MB</a>
+          </p>
+      <!-- ------------------------------------------------------------------------- -->
+          <p>
+            <label for="MemoriaVirtual">Memoria Virtual Utilizada:</label>
+              <progress id="MemoriaVirtual" value="1" max="100"></progress>
+                <a id="MemoriaVirtualAtag">0MB</a>
+          </p>
+      <!-- ------------------------------------------------------------------------- -->
+    </fieldset>
           <button onclick="refreshjs();">Start</button>
-        </fieldset>
       </div>
     </div>
   </body>

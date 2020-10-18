@@ -1,90 +1,69 @@
 var is = require("electron-is");
-
-function appendOutputStatus(msg) { 
-  getCommandOutputStatus().value = (msg); 
-  getCommandOutputStatusA().innerHTML = ('', msg + '%'); 
-};
-
-function MEMOUtPUT(msg) {
-  MEMOUtPUTa().value = (msg);
-  MEMOUtPUTb().innerHTML = (msg + 'MB'); 
-};
-
-function MEMt(msg) {
-  MemoriaTotal().max = (msg); 
-}
-
+memoriaramtotaldodispositivo();
 function refreshjs() {
   setInterval(function(){
     statusCPU();
     statusMEM();
-    statusMEM2();
+    MemoriaVirtual();
   }, document.getElementById("refresh").value ); 
 };
 function statusCPU() {
-    const process = require('child_process'); 
-    var sudo = 'sudo';
-    var CPU = 'CPU=true';
-    var CPU2 = '--preserve-env=CPU';
-    var status = 'bds-status';
-        
-    var child = process.spawn('sudo', [CPU, sudo, CPU2, status]); 
-
-    child.on('error', function(err) {
-      appendOutputStatus('Tivemos Um Erro <'+err+'>' );
+    var exec = require('child_process').exec;
+    var child = exec('sudo bds-status cpu', {
+      shell: true
     });
-
     child.stdout.on('data', function (data) {
-      appendOutputStatus(data);
+      var str;
+      str = data.toString();
+      str = str.replace(/\r?\n|\r/g, "");
+  
+      document.getElementById("statusCPU").value = (str); 
+      document.getElementById("statusCPUa").innerHTML = (str); 
     });
 };
 
 function statusMEM() {
-  const process = require('child_process'); 
-  var sudo2 = 'sudo';
-  var CPU2 = 'MEM=true';
-  var CPU22 = '--preserve-env=MEM';
-  var status2 = 'bds-status';
-      
-  var child = process.spawn('sudo', [CPU2, sudo2, CPU22, status2]); 
-
+  var exec = require('child_process').exec;
+  var child = exec('sudo bds-status mem', {
+    shell: true
+  });
   child.stdout.on('data', function (data) {
-    MEMOUtPUT(data);
+    var str;
+    str = data.toString();
+    str = str.replace(/\r?\n|\r/g, "");    
+
+    document.getElementById("Memoriaramatual").value = (str);
+    return document.getElementById("Memoriaramatuala").innerHTML = (str + ' ' + 'MB'); ;
   });
 };
 
-function statusMEM2() {
-  // cat /proc/meminfo |grep MemTotal|sed 's|MemTotal:||g'|sed 's|kB||g'|sed 's| ||g'|while read KB dummy;do echo $((KB/1024));done
-  var cat = 'bash';
-  var file = 'assents/nen.sh';
-  // ---------------------------------------
-  const process = require('child_process'); 
-  var child = process.spawn(cat ,[file]); 
+function MemoriaVirtual() {
+  var exec = require('child_process').exec;
+  var MEM = 'MEM';
+  var child = exec('sudo bds-status memv', {
+    shell: true
+  });
+  child.stdout.on('data', function (data) {
+    var str;
+    str = data.toString();
+    str = str.replace(/\r?\n|\r/g, "");    
 
+    document.getElementById("MemoriaVirtual").value = (str);
+    return document.getElementById("MemoriaVirtualAtag").innerHTML = (str + ' ' + 'MB'); ;
+  });
+};
+
+function memoriaramtotaldodispositivo() {
+  var exec = require('child_process').exec;
+  var child = exec('cat /proc/meminfo |grep MemTotal|sed "s|MemTotal:||g"|sed "s|kB||g"|sed "s| ||g"|while read KB dummy;do echo $((KB/1024));done', {
+    shell: true
+  });
   child.stdout.on('data', function (data) {
     var str;
     str = data.toString();
     str = str.replace(/\r?\n|\r/g, "");
-    return document.getElementById('MEMu').max = (str);
+    document.getElementById('MemoriaVirtual').max = (str);
+    return document.getElementById('Memoriaramatual').max = (str);
   });
+  // cat /proc/meminfo |grep MemTotal|sed 's|MemTotal:||g'|sed 's|kB||g'|sed 's| ||g'|while read KB dummy;do echo $((KB/1024));done  
 };
-
-
-
-// function statusMEMV() {
-//   const process = require('child_process'); 
-//   var sudo = 'sudo';
-//   var CPU = 'CPU=true';
-//   var CPU2 = '--preserve-env=CPU';
-//   var status = 'bds-status';
-      
-//   var child = process.spawn('sudo', [CPU, sudo, CPU2, status]); 
-
-//   child.on('error', function(err) {
-//     appendOutputStatus('Tivemos Um Erro <'+err+'>' );
-//   });
-
-//   child.stdout.on('data', function (data) {
-//     appendOutputStatus(data);
-//   });
-// };
