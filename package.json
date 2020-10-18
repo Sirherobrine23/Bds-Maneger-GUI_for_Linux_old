@@ -4,7 +4,7 @@
   "description": "Um gerenciador grafico baseado em node.js",
   "main": "main.js",
   "devDependencies": {
-    "electron": "^11.0.0-beta.9",
+    "electron": "^11.0.0-beta.13",
     "electron-builder": "^22.8.1"
   },
   "dependencies": {
