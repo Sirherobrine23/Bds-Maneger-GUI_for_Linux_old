@@ -16,19 +16,25 @@
     "int": "npm install"
   },
   "build": {
+    "appId": "com.Sirherobrine23.BDS-Gui",
+    "icon": "build/icons/mcpe.png",
+    "asar": "true",
     "linux": {
-      "icon": "build/icons/mcpe.png",
-      "category": "Sirherobrine23"
+      "category": "sh23"
+    },
+    "deb":{
+      "depends": ["gconf2", "gconf-service", "libnotify4", "libappindicator1", "libxtst6", "libnss3", "bds-maneger", "sshpass"],
+      "packageCategory": "sh23"
     }
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Sirherobrine23/bds-maneger.git"
+    "url": "git+https://github.com/Sirherobrine23/Bds-Maneger-GUI.git"
   },
   "author": "Matheus Sampaio Queirog (Sirherobrine23) <srherobrine20@gmail.com>",
   "license": "GPL3",
   "bugs": {
-    "url": "https://github.com/Sirherobrine23/bds-maneger/issues"
+    "url": "https://github.com/Sirherobrine23/Bds-Maneger-GUI/issues"
   },
-  "homepage": "https://github.com/Sirherobrine23/bds-maneger#readme"
+  "homepage": "https://github.com/Sirherobrine23/Bds-Maneger-GUI#readme"
 }
