@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>  
+<html>  
+    <head>  
+        <title>  
+            How to create a link in JavaScript ? 
+        </title> 
+    </head>  
+      
+    <body style = "text-align:center;"> 
+          
+        <p id = "GFG_UP" style="font-size: 19px; font-weight: bold;"> 
+        </p> 
+          
+        <button onclick = "GETLISTWORLD()">Get World List</button> 
+          
+        <p id = "GFG_DOWN" style="color: #008000; font-size: 24px; font-weight: bold;"></p> 
+        <select id="selectMPA">
+
+        </select>
+        <script> 
+            var el_up = document.getElementById("GFG_UP"); 
+            var el_down = document.getElementById("GFG_DOWN"); 
+
+            el_up.innerHTML = "Click on the button to generate list worlds"; 
+
+            function GETLISTWORLD() { 
+            var exec = require('child_process').exec;
+            var child = exec('sudo bds-switch get gui', {
+                shell: true
+            });
+            child.stdout.on('data', function (data) {
+                var str;
+                str = data.toString();
+                str = str.replace(/\r?\n|\r/g, "");    
+                var e = document.getElementById('selectMPA');
+                e.innerHTML += (str);                
+            });}
+        </script>  
+    </body>  
+</html>
