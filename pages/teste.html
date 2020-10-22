@@ -11,13 +11,13 @@
         <p id = "GFG_UP" style="font-size: 19px; font-weight: bold;"> 
         </p> 
           
-        <button onclick = "GETLISTWORLD()">Get World List</button> 
-          
+        <button onclick = "teste()">Teste</button>
         <p id = "GFG_DOWN" style="color: #008000; font-size: 24px; font-weight: bold;"></p> 
         <select id="selectMPA">
-
+            
         </select>
         <script> 
+            GETLISTWORLD();
             var el_up = document.getElementById("GFG_UP"); 
             var el_down = document.getElementById("GFG_DOWN"); 
 
@@ -35,6 +35,20 @@
                 var e = document.getElementById('selectMPA');
                 e.innerHTML += (str);                
             });}
+            function teste() {
+            var selectMPA = document.getElementById('selectMPA').value
+            document.getElementById('OUTPUTMAPS').value = ''
+            var LES = selectMPA
+            var exec = require('child_process').exec;
+            var child = exec('sudo bds-switch set man' + ' ' + LES , {
+                shell: true
+            });
+            child.stdout.on('data', function (data) {
+                return document.getElementById('OUTPUTMAPS').value += (data)
+            });
+                
+            }
         </script>  
+        <textarea id="OUTPUTMAPS" rows="30" cols="90" value=""></textarea>
     </body>  
 </html>
