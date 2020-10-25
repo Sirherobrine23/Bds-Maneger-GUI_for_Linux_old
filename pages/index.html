@@ -5,36 +5,54 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Minecraft Bedrock Server Maneger</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel="icon" type="image/png" href="../assents/mcpe.png"/>
-    <!-- <link rel='stylesheet' type='text/css' media='screen' href="https://old.sirherobrine23.org/css/bootstrap4.4.css"> -->
-    <link rel='stylesheet' type='text/css' media='screen' href="../assents/index.css">
+    <link rel="icon" type="image/png" href="assents/mcpe.png"/>
+    <link rel='stylesheet' type='text/css' media='screen' href="index.css">
 </head>
-<a href="teste.html">Pagina de testes</a>
+
+
+
+
 <!--Java Script-->
 <!-- Status -->
-<script src="../assents/status.js"></script>
+<script src="assents/status.js"></script>
 
 <!-- Give Iten -->
-<script src="../assents/give.js"></script>
+<script src="assents/give.js"></script>
 
 <!-- Set Config -->
-<script src="../assents/config.js"></script>
+<script src="assents/config.js"></script>
+
+<!-- Switch World -->
+<script src="assents/switch.js"></script>
 <!--Java Script-->
   <body>
-    <br>
+    <nav class="nav">
+      <ul class="nav-nav">
+        <li class="nav-item">
+          <a href="#" class="nav-l">
+              <a href="teste.html">Pagina de testes</a>
+              <p>
+                <button onclick="startserver()">Start Server</button>
+              </p>
+              <p>
+                <button onclick="stopserver()">Stop Server</button>
+              </p>
+              <p>
+                <button onclick="restartserver()">Restart Server</button>
+              </p>
+          </a>
+        </li>
+      </ul>
+    </nav>
     <div class="root">
       <!-- config -->
-        
       <div class="config">
         <label for="CConfig">Minecraft Server Configurations</label>
           <fieldset id="CConfig">
             <form class="start_buttom" method="POST" action="#" onsubmit="SET();return false">
-              
               <label for="player">Total permited for user connect in world:</label>
               <input type="number" value="10" id="player" />
-              
-              <br>
-          
+                <br>
               <!--Mine Permission default for players-->
               <label for="perm">Select Permission for all players:</label>
               <select id="perm">
@@ -42,18 +60,14 @@
                 <option value="member">Member</option>
                 <option value="visitor">Visitor</option>
               </select>
-          
                 <br>
-          
               <!--Open map`s for players not authenticated in account in Minecraft-->
               <label for="xbox">Online Mode Server:</label>
               <select id="xbox">
                 <option value="true">Yes</option>
                 <option value="false">No</option>
               </select>
-          
-              <br>
-          
+                <br>
               <!--Whitelist-->
               <label for="whitelist">Whitelist</label>
                 <select id="whitelist">
@@ -61,28 +75,21 @@
                 <option value="true">Yes</option>
                 <option value="false">No</option>
               </select>
-              
                 <br>      
-              
               <!--Modify port v4 (IPv4) in server.proprieties-->
               <label for="port4">Port (v4) Server for connect:</label>
               <input id="port4" type="number" value="19132">
-          
-              <br>
-          
+                <br>
               <!--Modify port v6 (IPv6) in server.proprieties-->
               <label for="port6">Port (v6) Server for connect:</label>
               <input id="port6" type="number" value="19133">
               <input type="submit" />
-          
             </form>
-          <textarea rows="11" cols="35" id='configOUTPUT'></textarea>
         </fieldset>
       </div>
         
       <!-- Give Itens -->
-      <div class="give">
-        <label for="give-C">Give Item</label>
+      <div class="give">Give Item
         <fieldset id="give-C">
           <form method="POST" action="#" onsubmit="GIVE();return false">
             <label for="nick">Nickname ou Gametag:</label>
@@ -96,39 +103,35 @@
 
               <input type="submit" value="Give me the item" />
           </form> 
-        <textarea rows="11" cols="35" id='giveOUTPUT'></textarea>
+        
       </fieldset>
       </div>
-       
-      <!-- Status -->
-      <div class="Saidas">
-        <label for="Minecraft-Status">Minecraft Status:</label>
-        <fieldset id="Minecraft-Status">
-          <label for="refresh">Total to refresh:</label>
-            <input id="refresh" type="number" min="400" value="400">
-          <label for="refresh">ms, *Not Recommended down 400 ms</label>
-      <!-- ------------------------------------------------------------------------- -->
-          <p>
-            <label for="statusCPU">CPU:</label>
-              <progress id="statusCPU" value="1" max="200"></progress>
-                <a id="statusCPUa">0%</a>
-          </p>
-      <!-- ------------------------------------------------------------------------- -->
-          <p>
-            <label for="Memoriaramatual">Memoria RAM:</label>
-              <progress id="Memoriaramatual" value="1" max="100"></progress>
-                <a id="Memoriaramatuala">0MB</a>
-          </p>
-      <!-- ------------------------------------------------------------------------- -->
-          <p>
-            <label for="MemoriaVirtual">Memoria Virtual Utilizada:</label>
-              <progress id="MemoriaVirtual" value="1" max="100"></progress>
-                <a id="MemoriaVirtualAtag">0MB</a>
-          </p>
-      <!-- ------------------------------------------------------------------------- -->
-    </fieldset>
-          <button onclick="refreshjs();">Start</button>
+
+      <!-- Switch Worlds -->
+      <div class="worldsswitch">Worlds Switch
+        <fieldset id="switch">
+          <select id="selectMPA"></select>
+          <button onclick = "teste()">Change World</button>
+        </fieldset>
       </div>
+
+      <!-- Status -->
+      <div class="SwitchOUT">Worlds Switch
+        <fieldset>
+          <textarea id="OUTPUTMAPS" rows="11" cols="35" value=""></textarea>
+        </fieldset>
+      </div>
+      <div class="GiveOUT">Give Items
+        <fieldset>
+          <textarea rows="11" cols="35" id='giveOUTPUT'></textarea>
+        </fieldset>
+      </div>
+      <div class="ConfOUT">Configurations
+        <fieldset>
+          <textarea rows="11" cols="35" id='configOUTPUT'></textarea>
+        </fieldset>
+      </div>
+      <!-- Root Div end -->
     </div>
   </body>
 </html>

@@ -2,6 +2,7 @@
   "name": "bds-maneger-gui",
   "version": "1.0.1",
   "description": "Um gerenciador grafico baseado em node.js",
+  "icon": "./assents/mcpe.png",
   "main": "main.js",
   "devDependencies": {
     "electron": "^11.0.0-beta.13",
@@ -12,19 +13,18 @@
   },
   "scripts": {
     "start": "node_modules/.bin/electron . --no-sandbox",
-    "build-deb": "node_modules/.bin/electron-builder --x64 --arm64 --linux deb",
-    "int": "npm install"
+    "build-deb": "node_modules/.bin/electron-builder --x64 --arm64 --linux deb"
   },
   "build": {
     "appId": "com.Sirherobrine23.BDS-Gui",
-    "icon": "build/icons/mcpe.png",
+    "icon": "pages/assents/mcpe.png",
     "asar": "true",
     "linux": {
-      "category": "sh23"
+      "category": "Sirherobrine23"
     },
     "deb":{
       "depends": ["gconf2", "gconf-service", "libnotify4", "libappindicator1", "libxtst6", "libnss3", "bds-maneger", "sshpass"],
-      "packageCategory": "sh23"
+      "packageCategory": "Sirherobrine23"
     }
   },
   "repository": {

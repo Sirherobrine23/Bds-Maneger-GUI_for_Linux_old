@@ -1,13 +1,15 @@
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 
 const electron = require('electron')
+var path = require('path')
 const { app, BrowserWindow } = require('electron')
 function createWindow () {
   // Cria uma janela de navegação.
   const win = new BrowserWindow({
+    titleBarStyle: 'hidden',
     width: 1200,
     height: 620,
-    icon: '/assents/mcpe.png',
+    icon: path.join(__dirname, 'pages/assents/mcpe.png'),
     webPreferences: {
       nodeIntegration: true,
       sandbox: false
@@ -26,7 +28,7 @@ function bdsmaneger() {
     if (code == 0){
       app.whenReady().then(createWindow);
     } else {
-      console.log (`Exited it BDS-Manager is not installed, code ${code}`);
+      alert(`Exited it BDS-Manager is not installed, code ${code}`);
       app.quit();
     }
   });
