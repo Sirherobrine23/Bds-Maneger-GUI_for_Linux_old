@@ -1,3 +1,22 @@
+@font-face {
+    font-family: minecraft;
+    src: url(assents/font/Minecraft.ttf);
+}
+@font-face {
+    font-family: minecraft-bold;
+    src: url(assents/font/Mojang-Bold.ttf);
+}
+@font-face {
+    font-family: minecraft-regular;
+    src: url(assents/font/Mojang-Regular.ttf);
+}
+/* Font END */
+
+*{
+    font-family: minecraft-regular;
+    font-size: small;
+}
+
 body{
     transition-duration: 1.5s;
     background-color: rgba(193, 193, 193, 0.379);
@@ -6,14 +25,11 @@ body{
     float: left; 
     margin-bottom: 50px;
 }
-.port-right {
-    float: right;
-}
-.port-center {
-    margin-left: 1.9%;
-}
-.port {
-    color: black;
+.port-right {float: right;}
+.port-center {margin-left: 1.9%;}
+.port {color: black;}
+.logo-a{
+
 }
 @media screen and (min-width: 1000px){
     .root{
@@ -24,6 +40,9 @@ body{
         grid-template-areas:
         "give config worldsswitch"
         "gi co sw";
+    }
+    .logo-a{
+        
     }
 }
 .root{
@@ -48,32 +67,18 @@ body{
     flex-direction: column;
     align-items: center;
 }
-.nav:hover{
-    width: 10rem;
-    
-}
-.nav:hover .link-text{
-    display: block;
-}
-.nav-item{
+.nav:hover{width: 10rem;}
+.nav:hover .link-text{display: block;}
+/* .nav-item{
     width: 100%;
-}
-.nav-item:last-child{
-    margin-top: auto;
-}
+} */
+.nav-item:last-child{margin-top: auto;}
 .nav-l{
     display: flex;
     align-items: center;
     height: 5rem;
-    color: white;
+    color: rgb(0, 0, 0);
     text-decoration: none;
-}
-.nav-svg{
-    height: 1rem;
-}
-.nav-l image{
-    min-width: 2rem;
-    margin: 0 1.5rem;
 }
 .link-text{
     display: none;
