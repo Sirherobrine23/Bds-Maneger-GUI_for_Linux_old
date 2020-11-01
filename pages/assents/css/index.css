@@ -1,15 +1,15 @@
 @font-face {
     font-family: minecraft;
-    src: url(assents/font/Minecraft.ttf);
+    src: url(Minecraft.ttf);
 }
 @font-face {
     font-family: minecraft-bold;
-    src: url(assents/font/Mojang-Bold.ttf);
+    src: url(Mojang-Bold.ttf);
 }
-/* @font-face {
+@font-face {
     font-family: minecraft-regular;
-    src: url(assents/font/Mojang-Regular.ttf);
-} */
+    src: url(Mojang-Regular.ttf);
+}
 /* Font END */
 *{
     font-family: minecraft-regular;
@@ -22,6 +22,7 @@ input{
 textarea{
   color: var(--text-secondary);
   background-color: var(--bg-secondary);
+  font-family: minecraft;
 }
 select{
   color: var(--text-primary);
@@ -46,9 +47,47 @@ div,html{
   background-color: var(--bg-primary);
 }
 
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: var(--bg-primary); /* Fallback color */
+  background-color: var(--box-primary); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: var(--bg-primary);
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
 
 @media only screen and (min-width: 1000px) {
-  .root{
+  /* .root{
       display: grid;
       grid-template-columns: 0,5fr 2fr 1,5fr;
       grid-template-rows: 1,5fr 0,5fr 1fr;
@@ -61,37 +100,35 @@ div,html{
   .SwitchOUT{grid-area: sw;}
   .GiveOUT{grid-area: gi;}
   .ConfOUT{grid-area: co;}
-  .worldsswitch{grid-area: worldsswitch;}
+  .worldsswitch{grid-area: worldsswitch;} */
 }
   /* -------------------------- */
 
   :root {
     font-size: 16px;
-    font-family: 'Open Sans';
-    --text-primary: #b6b6b6;
+    /* --text-primary: #b6b6b6;
     --text-secondary: #ececec;
     --bg-primary: #23232e;
-    --bg-secondary: #141418;
+    --bg-secondary: #141418; */
     --transition-speed: 600ms;
   }
   
   body {
-    color: black;
-    background-color: white;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
     margin: 0;
     padding: 0;
   }
   
-  body::-webkit-scrollbar {
-    width: 0.25rem;
+  ::-webkit-scrollbar {
+    width: 0.45rem;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
   }
   
-  body::-webkit-scrollbar-track {
-    background: #1e1e24;
-  }
-  
-  body::-webkit-scrollbar-thumb {
-    background: #6649b8;
+  ::-webkit-scrollbar-thumb {
+    background: var(--scroll);
   }
   
   .root {
@@ -152,11 +189,11 @@ div,html{
   }
   
   .fa-primary {
-    color: #ff7eee;
+    color: var(--text-primary);
   }
   
   .fa-secondary {
-    color: #df49a6;
+    color: var(--text-secondary);
   }
   
   .fa-primary,
@@ -177,7 +214,7 @@ div,html{
   }
   
   .logo svg {
-    transform: rotate(0deg);
+    /* transform: rotate(0deg); */
     transition: var(--transition-speed);
   }
   
@@ -215,6 +252,7 @@ div,html{
   
     .root {
       margin: 0;
+      margin-bottom: 5rem;
     }
   }
   
@@ -250,6 +288,8 @@ div,html{
     --text-secondary: #ececec;
     --bg-primary: #23232e;
     --bg-secondary: #141418;
+    --box-primary: rgba(0,0,0,0.4);
+    --scroll: #000;
   }
   
   .light {
@@ -257,6 +297,8 @@ div,html{
     --text-secondary: #000000;
     --bg-primary: #ffffff;
     --bg-secondary: #e4e4e4;
+    --box-primary: rgba(0,0,0,0.4);
+    --scroll: #000;
   }
   
   .theme-icon {
@@ -270,3 +312,10 @@ div,html{
   .light #lightIcon {
     display: block;
   }
+.BDSLOG{
+  background-color: transparent;
+  border: 0 none white;
+  /* overflow: hidden; */
+  padding: 0;
+  outline: none;
+}

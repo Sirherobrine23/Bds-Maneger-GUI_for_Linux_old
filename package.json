@@ -1,6 +1,6 @@
 {
   "name": "bds-maneger-gui",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Um gerenciador grafico baseado em node.js",
   "icon": "./assents/mcpe.png",
   "main": "main.js",
@@ -9,7 +9,8 @@
     "electron-builder": "^22.9.1"
   },
   "dependencies": {
-    "electron-is": "^3.0.0"
+    "electron-is": "^3.0.0",
+    "native-prompt": "^2.1.4"
   },
   "scripts": {
     "start": "node_modules/.bin/electron . --no-sandbox",

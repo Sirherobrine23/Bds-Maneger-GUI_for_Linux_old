@@ -7,225 +7,221 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="icon" type="image/png" href="assents/mcpe.png">
     <link rel='stylesheet' type='text/css' media='screen' href="assents/css/index.css">
+    <script>
+      const prompt = require('native-prompt')
+      var pass = localStorage.getItem('password');
+      if (pass == 'null') {
+        // var pass = prompt("Please enter your password to use sudo", ""); 
+        (async () => {
+            const pa = await prompt("Login", "Enter your password to execute commands.", { mask: true });
+            if (pa) {
+              localStorage.setItem('password', pa);
+              console.log('You Passworld saved');
+              alert('You Passworld saved')
+            } else {
+              alert('blank space our not infomed password')
+            }
+        })() 
+      } else {
+        console.log('Passworlds geted')
+      }
+    </script>
 </head>
   <body class="dark">
     <nav class="navbar">
       <ul class="navbar-nav">
+        <!-- Logo -->
+        
         <li class="logo">
           <a class="nav-link" href="teste.html">
-            <span class="link-text logo-text">Minecraft Bedrock Maneger GUI</span>
-              <svg
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="fad"
-              data-icon="angle-double-right"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 448 512"
-              class="svg-inline--fa fa-angle-double-right fa-w-14 fa-5x"
-            >
-              <g class="fa-group">
-                <path
-                  fill="currentColor"
-                  d="M224 273L88.37 409a23.78 23.78 0 0 1-33.8 0L32 386.36a23.94 23.94 0 0 1 0-33.89l96.13-96.37L32 159.73a23.94 23.94 0 0 1 0-33.89l22.44-22.79a23.78 23.78 0 0 1 33.8 0L223.88 239a23.94 23.94 0 0 1 .1 34z"
-                  class="fa-secondary"
-                ></path>
-                <path
-                  fill="currentColor"
-                  d="M415.89 273L280.34 409a23.77 23.77 0 0 1-33.79 0L224 386.26a23.94 23.94 0 0 1 0-33.89L320.11 256l-96-96.47a23.94 23.94 0 0 1 0-33.89l22.52-22.59a23.77 23.77 0 0 1 33.79 0L416 239a24 24 0 0 1-.11 34z"
-                  class="fa-primary"
-                ></path>
-              </g>
-            </svg>
+            <span class="link-text logo-text">
+              <br>
+              Minecraft Bedrock
+              <p>Maneger</p>
+              <p>GUI</p>
+            </span>
+              <svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="angle-double-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-angle-double-right fa-w-14 fa-5x"><g class="fa-group"><path fill="currentColor" d="M224 273L88.37 409a23.78 23.78 0 0 1-33.8 0L32 386.36a23.94 23.94 0 0 1 0-33.89l96.13-96.37L32 159.73a23.94 23.94 0 0 1 0-33.89l22.44-22.79a23.78 23.78 0 0 1 33.8 0L223.88 239a23.94 23.94 0 0 1 .1 34z" class="fa-secondary"></path><path fill="currentColor" d="M415.89 273L280.34 409a23.77 23.77 0 0 1-33.79 0L224 386.26a23.94 23.94 0 0 1 0-33.89L320.11 256l-96-96.47a23.94 23.94 0 0 1 0-33.89l22.52-22.59a23.77 23.77 0 0 1 33.79 0L416 239a24 24 0 0 1-.11 34z" class="fa-primary"></path></g></svg>
           </a>
         </li>
         <a class="nav-link"></a>
-        <!--  -->
-        <li class="nav-item">
-          <button onclick="startserver()">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-play" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M10.804 8L5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"/>
-            </svg>
-          </button>
-            <a>Start Server</a>
+        <!-- Start Server -->
+
+        <li class="nav-item" onclick="server_start()">
+          <a href="#" class="nav-link">
+            <svg width="1%" viewBox="0 0 16 16" class="bi bi-play" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.804 8L5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"/></svg>
+            <span class="link-text">Start Server</span>
+          </a>
         </li>
-        <!--  -->
-        <li class="nav-item">
-            <button onclick="stopserver()">
-              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pause" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5zm4 0a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
-              </svg>
-            </button>
-            <a>Stop Server</a>
+        <!-- Stop Server -->
+
+        <li class="nav-item" onclick="server_stop()">
+          <a href="#" class="nav-link">
+              <svg width="1%" viewBox="0 0 16 16" class="bi bi-pause" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5zm4 0a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/></svg>
+              <span class="link-text">Stop Server</span>
+          </a>
         </li>
-        <!--  -->
-        <li class="nav-item">
-            <button onclick="restartserver()">
-              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-clockwise" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
-                <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
-              </svg>
-            </button>
-              <a>Restart Server</a>
+        <!-- Restart Server -->
+
+        <li class="nav-item" onclick="server_restart()">
+          <a href="#" class="nav-link">
+              <svg width="1%" viewBox="0 0 16 16" class="bi bi-arrow-clockwise" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/> <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/></svg>
+              <span class="link-text">Restart Server</span>
+          </a>
         </li>
         <!-- Theme -->
 
         <li class="nav-item" id="themeButton">
           <a href="#" class="nav-link">
-            <svg
-              class="theme-icon"
-              id="lightIcon"
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="fad"
-              data-icon="moon-stars"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 512 512"
-              class="svg-inline--fa fa-moon-stars fa-w-16 fa-7x"
-            >
-              <g class="fa-group">
-                <path
-                  fill="currentColor"
-                  d="M320 32L304 0l-16 32-32 16 32 16 16 32 16-32 32-16zm138.7 149.3L432 128l-26.7 53.3L352 208l53.3 26.7L432 288l26.7-53.3L512 208z"
-                  class="fa-secondary"
-                ></path>
-                <path
-                  fill="currentColor"
-                  d="M332.2 426.4c8.1-1.6 13.9 8 8.6 14.5a191.18 191.18 0 0 1-149 71.1C85.8 512 0 426 0 320c0-120 108.7-210.6 227-188.8 8.2 1.6 10.1 12.6 2.8 16.7a150.3 150.3 0 0 0-76.1 130.8c0 94 85.4 165.4 178.5 147.7z"
-                  class="fa-primary"
-                ></path>
-              </g>
-            </svg>
-            <svg
-              class="theme-icon"
-              id="solarIcon"
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="fad"
-              data-icon="sun"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 512 512"
-              class="svg-inline--fa fa-sun fa-w-16 fa-7x"
-            >
-              <g class="fa-group">
-                <path
-                  fill="currentColor"
-                  d="M502.42 240.5l-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.41-94.8a17.31 17.31 0 0 0-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4a17.31 17.31 0 0 0 0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.41-33.5 47.3 94.7a17.31 17.31 0 0 0 31 0l47.31-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3a17.33 17.33 0 0 0 .2-31.1zm-155.9 106c-49.91 49.9-131.11 49.9-181 0a128.13 128.13 0 0 1 0-181c49.9-49.9 131.1-49.9 181 0a128.13 128.13 0 0 1 0 181z"
-                  class="fa-secondary"
-                ></path>
-                <path
-                  fill="currentColor"
-                  d="M352 256a96 96 0 1 1-96-96 96.15 96.15 0 0 1 96 96z"
-                  class="fa-primary"
-                ></path>
-              </g>
-            </svg>
-            <svg
-              class="theme-icon"
-              id="darkIcon"
-              aria-hidden="true"
-              focusable="false"
-              data-prefix="fad"
-              data-icon="sunglasses"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 576 512"
-              class="svg-inline--fa fa-sunglasses fa-w-18 fa-7x"
-            >
-              <g class="fa-group">
-                <path
-                  fill="currentColor"
-                  d="M574.09 280.38L528.75 98.66a87.94 87.94 0 0 0-113.19-62.14l-15.25 5.08a16 16 0 0 0-10.12 20.25L395.25 77a16 16 0 0 0 20.22 10.13l13.19-4.39c10.87-3.63 23-3.57 33.15 1.73a39.59 39.59 0 0 1 20.38 25.81l38.47 153.83a276.7 276.7 0 0 0-81.22-12.47c-34.75 0-74 7-114.85 26.75h-73.18c-40.85-19.75-80.07-26.75-114.85-26.75a276.75 276.75 0 0 0-81.22 12.45l38.47-153.8a39.61 39.61 0 0 1 20.38-25.82c10.15-5.29 22.28-5.34 33.15-1.73l13.16 4.39A16 16 0 0 0 180.75 77l5.06-15.19a16 16 0 0 0-10.12-20.21l-15.25-5.08A87.95 87.95 0 0 0 47.25 98.65L1.91 280.38A75.35 75.35 0 0 0 0 295.86v70.25C0 429 51.59 480 115.19 480h37.12c60.28 0 110.38-45.94 114.88-105.37l2.93-38.63h35.76l2.93 38.63c4.5 59.43 54.6 105.37 114.88 105.37h37.12C524.41 480 576 429 576 366.13v-70.25a62.67 62.67 0 0 0-1.91-15.5zM203.38 369.8c-2 25.9-24.41 46.2-51.07 46.2h-37.12C87 416 64 393.63 64 366.11v-37.55a217.35 217.35 0 0 1 72.59-12.9 196.51 196.51 0 0 1 69.91 12.9zM512 366.13c0 27.5-23 49.87-51.19 49.87h-37.12c-26.69 0-49.1-20.3-51.07-46.2l-3.12-41.24a196.55 196.55 0 0 1 69.94-12.9A217.41 217.41 0 0 1 512 328.58z"
-                  class="fa-secondary"
-                ></path>
-                <path
-                  fill="currentColor"
-                  d="M64.19 367.9c0-.61-.19-1.18-.19-1.8 0 27.53 23 49.9 51.19 49.9h37.12c26.66 0 49.1-20.3 51.07-46.2l3.12-41.24c-14-5.29-28.31-8.38-42.78-10.42zm404-50l-95.83 47.91.3 4c2 25.9 24.38 46.2 51.07 46.2h37.12C489 416 512 393.63 512 366.13v-37.55a227.76 227.76 0 0 0-43.85-10.66z"
-                  class="fa-primary"
-                ></path>
-              </g>
-            </svg>
-            <span class="link-text">Themify</span>
+            <svg class="theme-icon" id="lightIcon" aria-hidden="true" focusable="false" data-prefix="fad" data-icon="moon-stars" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-moon-stars fa-w-16 fa-7x"><g class="fa-group"><path fill="currentColor" d="M320 32L304 0l-16 32-32 16 32 16 16 32 16-32 32-16zm138.7 149.3L432 128l-26.7 53.3L352 208l53.3 26.7L432 288l26.7-53.3L512 208z" class="fa-secondary"></path><path fill="currentColor" d="M332.2 426.4c8.1-1.6 13.9 8 8.6 14.5a191.18 191.18 0 0 1-149 71.1C85.8 512 0 426 0 320c0-120 108.7-210.6 227-188.8 8.2 1.6 10.1 12.6 2.8 16.7a150.3 150.3 0 0 0-76.1 130.8c0 94 85.4 165.4 178.5 147.7z" class="fa-primary"></path></g></svg>
+            <svg class="theme-icon" id="solarIcon" aria-hidden="true" focusable="false" data-prefix="fad" data-icon="sun" role="img" xmlns="http://www.w3.org/2000/svg" class="svg-inline--fa fa-sun fa-w-16 fa-7x"><g class="fa-group"><path fill="currentColor" d="M502.42 240.5l-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.41-94.8a17.31 17.31 0 0 0-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4a17.31 17.31 0 0 0 0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.41-33.5 47.3 94.7a17.31 17.31 0 0 0 31 0l47.31-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3a17.33 17.33 0 0 0 .2-31.1zm-155.9 106c-49.91 49.9-131.11 49.9-181 0a128.13 128.13 0 0 1 0-181c49.9-49.9 131.1-49.9 181 0a128.13 128.13 0 0 1 0 181z" class="fa-secondary"></path><path fill="currentColor" d="M352 256a96 96 0 1 1-96-96 96.15 96.15 0 0 1 96 96z" class="fa-primary"></path></g></svg>
+            <svg class="theme-icon" id="darkIcon" aria-hidden="true" focusable="false" data-prefix="fad" data-icon="sunglasses" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="svg-inline--fa fa-sunglasses fa-w-18 fa-7x"><g class="fa-group"><path fill="currentColor" d="M574.09 280.38L528.75 98.66a87.94 87.94 0 0 0-113.19-62.14l-15.25 5.08a16 16 0 0 0-10.12 20.25L395.25 77a16 16 0 0 0 20.22 10.13l13.19-4.39c10.87-3.63 23-3.57 33.15 1.73a39.59 39.59 0 0 1 20.38 25.81l38.47 153.83a276.7 276.7 0 0 0-81.22-12.47c-34.75 0-74 7-114.85 26.75h-73.18c-40.85-19.75-80.07-26.75-114.85-26.75a276.75 276.75 0 0 0-81.22 12.45l38.47-153.8a39.61 39.61 0 0 1 20.38-25.82c10.15-5.29 22.28-5.34 33.15-1.73l13.16 4.39A16 16 0 0 0 180.75 77l5.06-15.19a16 16 0 0 0-10.12-20.21l-15.25-5.08A87.95 87.95 0 0 0 47.25 98.65L1.91 280.38A75.35 75.35 0 0 0 0 295.86v70.25C0 429 51.59 480 115.19 480h37.12c60.28 0 110.38-45.94 114.88-105.37l2.93-38.63h35.76l2.93 38.63c4.5 59.43 54.6 105.37 114.88 105.37h37.12C524.41 480 576 429 576 366.13v-70.25a62.67 62.67 0 0 0-1.91-15.5zM203.38 369.8c-2 25.9-24.41 46.2-51.07 46.2h-37.12C87 416 64 393.63 64 366.11v-37.55a217.35 217.35 0 0 1 72.59-12.9 196.51 196.51 0 0 1 69.91 12.9zM512 366.13c0 27.5-23 49.87-51.19 49.87h-37.12c-26.69 0-49.1-20.3-51.07-46.2l-3.12-41.24a196.55 196.55 0 0 1 69.94-12.9A217.41 217.41 0 0 1 512 328.58z" class="fa-secondary"></path><path fill="currentColor" d="M64.19 367.9c0-.61-.19-1.18-.19-1.8 0 27.53 23 49.9 51.19 49.9h37.12c26.66 0 49.1-20.3 51.07-46.2l3.12-41.24c-14-5.29-28.31-8.38-42.78-10.42zm404-50l-95.83 47.91.3 4c2 25.9 24.38 46.2 51.07 46.2h37.12C489 416 512 393.63 512 366.13v-37.55a227.76 227.76 0 0 0-43.85-10.66z" class="fa-primary"></path></g></svg>
+            <span class="link-text">Themes</span>
           </a>
         </li>
+        <!-- Give Item -->
 
+        <li class="nav-item" id="giveMENU">
+          <a href="#" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="2%" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+            <span class="link-text">Give Item</span>
+          </a>
+        </li>
+        <!-- Log -->
+
+        <li class="nav-item" id="log">
+          <a href="#" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="2%" viewBox="0 0 24 24"><g><rect fill="none" height="24" width="24"/><path d="M20.41,8.41l-4.83-4.83C15.21,3.21,14.7,3,14.17,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V9.83 C21,9.3,20.79,8.79,20.41,8.41z M7,7h7v2H7V7z M17,17H7v-2h10V17z M17,13H7v-2h10V13z"/></g></svg>
+            <span class="link-text">Log</span>
+          </a>
+        </li>
+        <!-- Seetings -->
+
+        <li class="nav-item" id="Config">
+          <a href="#" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="2%" viewBox="0 0 24 24"><g><path d="M0,0h24v24H0V0z" fill="none"/><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/></g></svg>
+            <span class="link-text">Settings</span>
+          </a>
+        </li>
       </ul>
     </nav>
+    <!-- End NAV -->
     <div class="root">
-      <!-- config -->
-      <div class="config">
-        <label for="CConfig">Minecraft Server Configurations</label>
-          <fieldset id="CConfig">
-            <form class="start_buttom" method="POST" action="#" onsubmit="SET();return false">
-              <label for="player">Total permited for user connect in world:</label>
-              <input type="number" value="10" id="player" />
-                <br>
-              <!--Mine Permission default for players-->
-              <label for="perm">Select Permission for all players:</label>
-              <select id="perm">
-                <option value="operator">Operator</option>
-                <option value="member">Member</option>
-                <option value="visitor">Visitor</option>
-              </select>
-                <br>
-              <!--Open map`s for players not authenticated in account in Minecraft-->
-              <label for="xbox">Online Mode Server:</label>
-              <select id="xbox">
-                <option value="true">Yes</option>
-                <option value="false">No</option>
-              </select>
-                <br>
-              <!--Whitelist-->
-              <label for="whitelist">Whitelist</label>
-                <select id="whitelist">
-                <option hidden>Select one Option</option>
-                <option value="true">Yes</option>
-                <option value="false">No</option>
-              </select>
-                <br>      
-              <!--Modify port v4 (IPv4) in server.proprieties-->
-              <label for="port4">Port (v4) Server for connect:</label>
-              <input id="port4" type="number" value="19132">
-                <br>
-              <!--Modify port v6 (IPv6) in server.proprieties-->
-              <label for="port6">Port (v6) Server for connect:</label>
-              <input id="port6" type="number" value="19133">
-              <input type="submit" />
-            </form>
+      <!-- LOG bds -->
+      <div class="logbdsclass">
+        <fieldset>
+          <textarea rows="1" style="height: 10rem; width: 100%; margin: 0px;" class="BDSLOG" id="BDSlog">
+            The log will be here
+          </textarea>
         </fieldset>
       </div>
-        
-      <!-- Give Itens -->
-      <div class="give">Give Item
-        <fieldset id="give-C">
-          <form method="POST" action="#" onsubmit="GIVE();return false">
-            <label for="nick">Nickname ou Gametag:</label>
-            <input type="text" id="nick" />
-              <br>
-            <label for="item">Qual o Item</label>
-            <input type="texte" id="item">
-              <br>
-            <label for="pack">Quantidade de itens:</label>
-            <input type="number" id="pack" value="1" min="1" max="64">
+      <!-- LOG bds -->
 
-              <input type="submit" value="Give me the item" />
-          </form> 
-        
-      </fieldset>
+
+
+      <!-- The Modal -->
+      <div id="config" class="modal">
+       <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+            <br>
+          <div class="config">
+            <label for="CConfig">Minecraft Server Configurations</label>
+              <fieldset id="CConfig">
+                <form class="start_buttom" method="POST" action="#" onsubmit="SET();return false">
+                  <p>
+                    <label for="player">Total permited for user connect in world:</label>
+                    <input type="number" value="10" id="player" />
+                  </p>
+                  <p>
+                    <!--Mine Permission default for players-->
+                    <label for="perm">Select Permission for all players:</label>
+                    <select id="perm">
+                      <option value="operator">Operator</option>
+                      <option value="member">Member</option>
+                      <option value="visitor">Visitor</option>
+                    </select>
+                  </p>
+                  <p>
+                    <!--Open map`s for players not authenticated in account in Minecraft-->
+                    <label for="xbox">Online Mode Server:</label>
+                    <select id="xbox">
+                      <option value="true">Yes</option>
+                      <option value="false">No</option>
+                    </select>
+                  </p>
+                  <p>
+                    <!--Whitelist-->
+                    <label for="whitelist">Whitelist</label>
+                      <select id="whitelist">
+                      <option hidden>Select one Option</option>
+                      <option value="true">Yes</option>
+                      <option value="false">No</option>
+                    </select>
+                  </p>
+                  <p>
+                    <!--Modify port v4 (IPv4) in server.proprieties-->
+                    <label for="port4">Port (v4) Server for connect:</label>
+                    <input id="port4" type="number" value="19132">
+                      <br>
+                    <!--Modify port v6 (IPv6) in server.proprieties-->
+                    <label for="port6">Port (v6) Server for connect:</label>
+                    <input id="port6" type="number" value="19133">
+                    <input type="submit" />
+                  </p>
+                </form>
+            </fieldset>
+          </div>
+
+         <!-- Switch Worlds -->
+          <div class="worldsswitch">Worlds Switch
+            <fieldset id="switch">
+              <select id="selectMPA"></select>
+              <button onclick = "teste()">Change World</button>
+            </fieldset>
+          </div>
+        </div>
       </div>
+      
+      <!-- LOG -->
+      <!-- The Modal -->
+      <div id="CHANGELOG" class="modal">
+        <!-- Modal content -->
+         <div class="modal-content">
+            <span class="closeLOG">&times; <label for="LOG">Log BDS-GUI</label></span>
+            <fieldset id="LOG">
+              
+            </fieldset>
+         </div>
+       </div>
 
-      <!-- Switch Worlds -->
-      <div class="worldsswitch">Worlds Switch
-        <fieldset id="switch">
-          <select id="selectMPA"></select>
-          <button onclick = "teste()">Change World</button>
-        </fieldset>
-      </div>
 
-      <!-- Status -->
-      <div class="SwitchOUT">Worlds Switch
+
+
+      <!-- The Modal -->
+      <div id="GIVEM" class="modal">
+        <!-- Modal content -->
+         <div class="modal-content">
+            <span class="closeG">&times; <label for="give-C">Give Item</label></span>
+            <!-- Give Itens -->
+            <div class="give">
+              <fieldset id="give-C">
+                <form method="POST" action="#" onsubmit="GIVE();return false">
+                  <label for="nick">Nickname ou Gametag:</label>
+                  <input type="text" id="nick" />
+                    <br>
+                  <label for="item">Qual o Item</label>
+                  <input type="texte" id="item">
+                    <br>
+                  <label for="pack">Quantidade de itens:</label>
+                  <input type="number" id="pack" value="1" min="1" max="64">
+                  <input type="submit" value="Give me the item" />
+                </form>       
+              </fieldset>
+            </div>
+         </div>
+       </div>
+      
+      <!-- <div class="SwitchOUT">Worlds Switch
         <fieldset>
           <textarea id="OUTPUTMAPS" rows="11" cols="35" value=""></textarea>
         </fieldset>
@@ -239,7 +235,7 @@
         <fieldset>
           <textarea rows="11" cols="35" id='configOUTPUT'></textarea>
         </fieldset>
-      </div>
+      </div> -->
       <!-- Root Div end -->
     </div>
   </body>
@@ -249,5 +245,11 @@
     <script src="assents/config.js"></script>
     <script src="assents/switch.js"></script>
     <script src="assents/js/theme.js"></script>
+    <script src="assents/js/box1.js"></script>
+    <script src="assents/js/log-box.js"></script>
+    <script src="assents/js/bds-service.js"></script>
+    <script src="assents/js/give-box.js"></script>
+    <script src="assents/js/autoresize-textare.js"></script>
+    <script src="assents/js/bdslog.js"></script>
   <!--Java Script-->
 </html>

@@ -1,7 +1,7 @@
 GETLISTWORLD();
 function GETLISTWORLD() { 
     var exec = require('child_process').exec;
-    var child = exec('sudo bds-switch get gui', {
+    var child = exec('bds-switch get gui', {
         shell: true
     });
     child.stdout.on('data', function (data) {
@@ -15,7 +15,7 @@ function GETLISTWORLD() {
 
 function latestworld() {
     var exec = require('child_process').exec;
-    var child = exec('cat /etc/BDS-Common/server.properties|grep "level-name="|sed "s|level-name=||g"sudo bds-switch get gui', {
+    var child = exec('cat /etc/BDS-Common/server.properties|grep "level-name="|sed "s|level-name=||g"', {
         shell: true
     });
     child.stdout.on('data', function (data) {
@@ -25,13 +25,11 @@ function latestworld() {
 
 function teste() {
     var selectMPA = document.getElementById('selectMPA').value
-    document.getElementById('OUTPUTMAPS').value = ''
-    var LES = selectMPA
     var exec = require('child_process').exec;
-    var child = exec('sudo bds-switch set man' + ' ' + LES , {
+    var child = exec('echo' + ' ' + pass + ' |sudo -S ' + 'bds-switch set man' + ' ' + selectMPA , {
         shell: true
     });
     child.stdout.on('data', function (data) {
-        return document.getElementById('OUTPUTMAPS').value += (data)
+        return document.getElementById('LOG').innerHTML += (data)
     });
 }

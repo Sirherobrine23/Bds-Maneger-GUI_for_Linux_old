@@ -1,10 +1,8 @@
 
 var is = require("electron-is");
-
-function appendOutputConfig(msg) { (msg); };
+var pass = localStorage.getItem('password');
 
 // For all command's
-var sudo = 'sudo';
 var bds_config = 'bds-config';
 // var bds_config = 'echo';
 var set_config = 'set';
@@ -15,7 +13,7 @@ var mais = '='
 
 function MAXPLAYER() {
   var spawn = require('child_process').spawn;
-  var child = spawn('sudo bds-config get player', {
+  var child = spawn('echo' + ' ' + pass + ' |sudo -S ' + 'bds-config get player', {
     shell: true
   });
   child.stdout.on('data', function (data) {
@@ -29,7 +27,7 @@ function MAXPLAYER() {
 
 function GETPERMISSION() {
   var spawn = require('child_process').spawn;
-  var child = spawn('sudo bds-config get permission', {
+  var child = spawn('echo' + ' ' + pass + ' |sudo -S ' + 'bds-config get permission', {
     shell: true
   });
   child.stdout.on('data', function (data) {
@@ -43,7 +41,7 @@ function GETPERMISSION() {
 
 function ONLINEMODE() {
   var spawn = require('child_process').spawn;
-  var child = spawn('sudo bds-config get xbox', {
+  var child = spawn('echo' + ' ' + pass + ' |sudo -S ' + 'bds-config get xbox', {
     shell: true
   });
   child.stdout.on('data', function (data) {
@@ -57,7 +55,7 @@ function ONLINEMODE() {
 
 function PORTSERVER() {
   var spawn = require('child_process').spawn;
-  var child = spawn('sudo bds-config get port', {
+  var child = spawn('echo' + ' ' + pass + ' |sudo -S ' + 'bds-config get port', {
     shell: true
   });
   child.stdout.on('data', function (data) {
@@ -71,7 +69,7 @@ function PORTSERVER() {
 
 function PORTSERVER6() {
   var spawn = require('child_process').spawn;
-  var child = spawn('sudo bds-config get portv6', {
+  var child = spawn('echo' + ' ' + pass + ' |sudo -S ' + 'bds-config get portv6', {
     shell: true
   });
     child.stdout.on('data', function (data) {
@@ -85,7 +83,7 @@ function PORTSERVER6() {
 
 function whitelistConfig() {
   var spawn = require('child_process').spawn;
-  var child = spawn('sudo bds-config get whitelist', {
+  var child = spawn('echo' + ' ' + pass + ' |sudo -S ' + 'bds-config get whitelist', {
     shell: true
   });
   child.stdout.on('data', function (data) {
@@ -107,7 +105,6 @@ whitelistConfig();
 // set Configs
 function SET() {
     const process = require('child_process');
-    var textarea = document.getElementById('output');
     var play = 'player=' + document.getElementById('player').value;
     var perm = 'permission=' + document.getElementById("perm").value;
     var xbox = 'xbox=' + document.getElementById("xbox").value;
@@ -117,9 +114,9 @@ function SET() {
     
     // var whitelist = document.getElementById("whitelist").value;
 
-    var child = process.spawn('sudo', [bds_config, set_config, play, perm, xbox, por4, por6, whitelist]);
+    var child = process.spawn('echo' + ' ' + pass + ' |sudo -S ' , [bds_config, set_config, play, perm, xbox, por4, por6, whitelist]);
     // Mais Inportante
     child.stdout.on('data', function (data) {
-      document.getElementById("configOUTPUT").value += (data);
+      document.getElementById("LOG").innerHTML += (data);
     });
 };

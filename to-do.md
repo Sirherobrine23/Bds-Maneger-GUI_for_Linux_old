@@ -1,0 +1,1 @@
+- Incluir: nos comando que precissão de root: '$echo <password> | sudo -S <command>'
