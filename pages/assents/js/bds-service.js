@@ -1,10 +1,11 @@
 var is = require("electron-is");
 var pass = localStorage.getItem('password');
+
 // start server
 function server_start() {
   console.log('Inicializado')
   var spawn = require('child_process').spawn;
-  var child = spawn('echo' + ' ' + pass + ' |sudo -S ' + '|sudo -S service bds start', {
+  var child = spawn('echo '+ pass + ' |sudo -S bash /etc/init.d/bds start', {
     shell: true
   });
   child.on('exit', function (code) {
@@ -16,13 +17,16 @@ function server_start() {
       return console.log(`Erro ${code}`)
     }
   });
+  child.stdout.on('data', function (data) {
+    document.getElementById('LOG').value += (data)
+  });
 };
 
 // Stop Server
 function server_stop() {
   console.log('Parando')
   var spawn = require('child_process').spawn;
-  var child = spawn('echo' + ' ' + pass + ' |sudo -S ' + 'service bds stop', {
+  var child = spawn('echo ' + pass + ' |sudo -S bash /etc/init.d/bds stop', {
     shell: true
   });
   child.on('exit', function (code) {
@@ -33,13 +37,18 @@ function server_stop() {
       alert('Por Favor Verifique seu você configurou para iniciar junto com o sistema')
     }
   });
+  child.stdout.on('data', function (data) {
+    document.getElementById('LOG').value += (data)
+  });
 };
 
 // Restart
 function server_restart() {
   console.log('Reiniciando')
+  document.getElementById('statsID').style.fill = 'yellow';
+  document.getElementById('statsIDout').innerHTML = 'You Serve is restating';
   var spawn = require('child_process').spawn;
-  var child = spawn('echo' + ' ' + pass + ' |sudo -S ' + 'service bds restart', {
+  var child = spawn('echo ' + pass + ' |sudo -S bash /etc/init.d/bds restart', {
     shell: true
   });
   child.on('exit', function (code) {
@@ -48,5 +57,8 @@ function server_restart() {
     } else {
       alert('Por Favor Verifique seu você configurou para iniciar junto com o sistema')
     }
+  });
+  child.stdout.on('data', function (data) {
+    document.getElementById('LOG').value += (data)
   });
 };

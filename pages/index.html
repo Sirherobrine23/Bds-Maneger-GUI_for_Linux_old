@@ -7,25 +7,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="icon" type="image/png" href="assents/mcpe.png">
     <link rel='stylesheet' type='text/css' media='screen' href="assents/css/index.css">
-    <script>
-      const prompt = require('native-prompt')
-      var pass = localStorage.getItem('password');
-      if (pass == 'null') {
-        // var pass = prompt("Please enter your password to use sudo", ""); 
-        (async () => {
-            const pa = await prompt("Login", "Enter your password to execute commands.", { mask: true });
-            if (pa) {
-              localStorage.setItem('password', pa);
-              console.log('You Passworld saved');
-              alert('You Passworld saved')
-            } else {
-              alert('blank space our not infomed password')
-            }
-        })() 
-      } else {
-        console.log('Passworlds geted')
-      }
-    </script>
+    <script src="assents/js/pass.js"></script>
 </head>
   <body class="dark">
     <nav class="navbar">
@@ -94,6 +76,14 @@
             <span class="link-text">Log</span>
           </a>
         </li>
+        <!-- Informações do projeto -->
+
+        <li class="nav-item" id="InfoB">
+          <a href="#" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="2%" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
+            <span class="link-text">About</span>
+          </a>
+        </li>
         <!-- Seetings -->
 
         <li class="nav-item" id="Config">
@@ -114,9 +104,15 @@
           </textarea>
         </fieldset>
       </div>
+      <div>
+        <fieldset>
+          <p>
+            <svg xmlns="http://www.w3.org/2000/svg" id="statsID" fill="black" aria-hidden="true" focusable="false" data-prefix="fad" viewBox="0 0 24 24" width="5%"><path d="M0 0h24v24H0z" fill="none"/><path d="M0 0h24v24H0z" fill="none"/><path d="M2 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10S2 17.52 2 12zm10 6c3.31 0 6-2.69 6-6s-2.69-6-6-6-6 2.69-6 6 2.69 6 6 6z"/></svg>
+            <a id="statsIDout"></a>
+          </p>
+        </fieldset>
+      </div>
       <!-- LOG bds -->
-
-
 
       <!-- The Modal -->
       <div id="config" class="modal">
@@ -175,10 +171,21 @@
          <!-- Switch Worlds -->
           <div class="worldsswitch">Worlds Switch
             <fieldset id="switch">
-              <select id="selectMPA"></select>
+              <select id="worldselect">
+                <option disabled>Select one World</option>
+              </select>
               <button onclick = "teste()">Change World</button>
             </fieldset>
           </div>
+          <!-- Charge Password storage  -->
+
+          <div>
+            <fieldset>
+              <input type="password" id="passwordID" value="">
+              <button onclick="chargepassword()">Charge Password storage</button>
+            </fieldset>
+          </div>
+          <!-- end modal -->
         </div>
       </div>
       
@@ -188,14 +195,41 @@
         <!-- Modal content -->
          <div class="modal-content">
             <span class="closeLOG">&times; <label for="LOG">Log BDS-GUI</label></span>
-            <fieldset id="LOG">
-              
+            <p><button onclick="log_download('Log-gui.txt', 'text/plain');return false">Download file</button></p>
+            <fieldset id="sLOG">
+              <textarea row="35" cols="15" id="LOG">
+
+              </textarea>
             </fieldset>
          </div>
        </div>
 
-
-
+      <!-- Info -->
+      <!-- The Modal -->
+      <div id="Info" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="infoclose">&times;</span>
+          <div class="info">
+            <fieldset>
+              <img src="assents/mcpe.png" width="7%">
+              <a>BDS MANEGER GUI &#9400;</a>
+                <div class="mantedor">
+                  <a>Lista de Mantedores</a>
+                    <br>
+                  <p><a>Matheus Sampaio Queiroga (Sirherobrine23)</a></p>
+                </div>
+                <div class="copyright">
+                  <!-- copyright -->
+                  <p><a>Este progroma se baseia no electron, Tendo Suas restrições e condutas de uso como copyright</a></p>
+                  <p><a>Tendo a implementações como NodeJS, e usados como seu submodulos com seus direitos autorais</a></p>
+                  <p><a>O bds-maneger é um script aberto para edições e correções de bug e erros de escritas e de software</a></p>
+                  <p><a>O Bds-Maneger-GUI é um programa baseado em electron, e o poder do NodeJS para configurações e Manuteção de Servidores de Minecraft Bedrock para Linux</a></p>
+                </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
 
       <!-- The Modal -->
       <div id="GIVEM" class="modal">
@@ -207,7 +241,10 @@
               <fieldset id="give-C">
                 <form method="POST" action="#" onsubmit="GIVE();return false">
                   <label for="nick">Nickname ou Gametag:</label>
-                  <input type="text" id="nick" />
+                  <!-- <input type="text" id="nick" /> -->
+                  <select id="nick">
+                    <option hidden>-- Disabled --</option>
+                  </select>
                     <br>
                   <label for="item">Qual o Item</label>
                   <input type="texte" id="item">
@@ -221,26 +258,13 @@
          </div>
        </div>
       
-      <!-- <div class="SwitchOUT">Worlds Switch
-        <fieldset>
-          <textarea id="OUTPUTMAPS" rows="11" cols="35" value=""></textarea>
-        </fieldset>
-      </div>
-      <div class="GiveOUT">Give Items
-        <fieldset>
-          <textarea rows="11" cols="35" id='giveOUTPUT'></textarea>
-        </fieldset>
-      </div>
-      <div class="ConfOUT">Configurations
-        <fieldset>
-          <textarea rows="11" cols="35" id='configOUTPUT'></textarea>
-        </fieldset>
-      </div> -->
+
       <!-- Root Div end -->
     </div>
   </body>
   <!--Java Script-->
-    <script src="assents/status.js"></script>
+    <script src="assents/js/info-box.js"></script>
+    <script src="assents/js/status.js"></script>
     <script src="assents/give.js"></script>
     <script src="assents/config.js"></script>
     <script src="assents/switch.js"></script>

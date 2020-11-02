@@ -12,12 +12,16 @@
 }
 /* Font END */
 *{
+    font-family: minecraft;
     font-family: minecraft-regular;
-    font-size: small;
 }
 input{
   color: var(--text-primary);
   background-color: var(--bg-secondary)
+}
+fieldset{
+  border-radius: 7px;
+  border-color: var(--border-color);
 }
 textarea{
   color: var(--text-secondary);
@@ -128,7 +132,7 @@ div,html{
   }
   
   ::-webkit-scrollbar-thumb {
-    background: var(--scroll);
+    background: var(--text-primary);
   }
   
   .root {
@@ -289,7 +293,7 @@ div,html{
     --bg-primary: #23232e;
     --bg-secondary: #141418;
     --box-primary: rgba(0,0,0,0.4);
-    --scroll: #000;
+    --border-color: rgba(255, 255, 255, 0.5);
   }
   
   .light {
@@ -298,7 +302,7 @@ div,html{
     --bg-primary: #ffffff;
     --bg-secondary: #e4e4e4;
     --box-primary: rgba(0,0,0,0.4);
-    --scroll: #000;
+    --border-color: rgba(0,0,0,0.5);
   }
   
   .theme-icon {
@@ -318,4 +322,12 @@ div,html{
   /* overflow: hidden; */
   padding: 0;
   outline: none;
+}
+.copyright{
+  float: left;
+  margin-right: 50%;
+}
+.mantedor{
+  float: right;
+  margin-left: 50%
 }

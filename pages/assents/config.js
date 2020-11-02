@@ -1,16 +1,6 @@
 
 var is = require("electron-is");
 var pass = localStorage.getItem('password');
-
-// For all command's
-var bds_config = 'bds-config';
-// var bds_config = 'echo';
-var set_config = 'set';
-var get_config = 'get';
-
-// Set command in chil process
-var mais = '='
-
 function MAXPLAYER() {
   var spawn = require('child_process').spawn;
   var child = spawn('echo' + ' ' + pass + ' |sudo -S ' + 'bds-config get player', {
@@ -94,29 +84,23 @@ function whitelistConfig() {
     return console.log("Whitelist: " + str);
   });
 }
-
-GETPERMISSION();
-ONLINEMODE();
-PORTSERVER();
-PORTSERVER6();
-MAXPLAYER();
-whitelistConfig();
-
+GETPERMISSION();ONLINEMODE();PORTSERVER();PORTSERVER6();MAXPLAYER();whitelistConfig();
 // set Configs
 function SET() {
-    const process = require('child_process');
-    var play = 'player=' + document.getElementById('player').value;
-    var perm = 'permission=' + document.getElementById("perm").value;
-    var xbox = 'xbox=' + document.getElementById("xbox").value;
-    var whitelist = 'whitelist=' + document.getElementById("whitelist").value;
-    var por4 = 'port=' + document.getElementById("port4").value;
-    var por6 = 'portv6=' + document.getElementById("port6").value;
-    
-    // var whitelist = document.getElementById("whitelist").value;
+  var play = 'player=' + document.getElementById('player').value;
+  var perm = 'permission=' + document.getElementById("perm").value;
+  var xbox = 'xbox=' + document.getElementById("xbox").value;
+  var whitelist = 'whitelist=' + document.getElementById("whitelist").value;
+  var por4 = 'port=' + document.getElementById("port4").value;
+  var por6 = 'portv6=' + document.getElementById("port6").value;
+  
+  var command_set = 'bds-config' + ' ' + 'set' + ' ' + play + ' ' + perm + ' ' + xbox + ' ' + por4 + ' ' + por6 + ' ' + whitelist
 
-    var child = process.spawn('echo' + ' ' + pass + ' |sudo -S ' , [bds_config, set_config, play, perm, xbox, por4, por6, whitelist]);
-    // Mais Inportante
-    child.stdout.on('data', function (data) {
-      document.getElementById("LOG").innerHTML += (data);
-    });
+  var exec = require('child_process').exec;
+  var child = exec('echo ' + pass + ' |sudo -S ' + command_set, {
+      shell: true
+  });
+  child.stdout.on('data', function (data) {
+    document.getElementById('LOG').value += (data)
+  });
 };
