@@ -1,1 +1,1 @@
-# è apenas uma gui muito simples baseado em electron e nodejs para o bds-maneger
+# Projeto Arquivado está sendo movido para outro projeto.
